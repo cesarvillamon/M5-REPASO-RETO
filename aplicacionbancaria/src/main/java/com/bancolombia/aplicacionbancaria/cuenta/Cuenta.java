@@ -13,19 +13,15 @@ public class Cuenta {
         return numeroCuenta;
     }
 
+    public void setNumeroCuenta(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
+    }
+
     public double getSaldo() {
         return saldo;
     }
 
-    public void depositar(double monto) {
-        this.saldo += monto;
-    }
-
-    public boolean retirar(double monto) {
-        if (monto <= saldo) {
-            this.saldo -= monto;
-            return true;
-        }
-        return false;
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
 }
