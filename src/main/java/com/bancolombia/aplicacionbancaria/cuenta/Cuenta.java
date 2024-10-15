@@ -1,38 +1,39 @@
 package com.bancolombia.aplicacionbancaria.cuenta;
 
 import com.bancolombia.aplicacionbancaria.transaccion.Transaccion;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Cuenta {
-
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "dtype", discriminatorType = DiscriminatorType.STRING)
+public abstract class Cuenta {
     @Id
-    private String numeroCuenta;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private double saldo;
+    private String numeroCuenta;
 
-    @OneToMany(mappedBy = "cuenta")
-    private List<Transaccion> transacciones = new ArrayList<>();
-
-    public Cuenta() {}
+    @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL)
+    private List<Transaccion> listaTransacciones = new ArrayList<>();
 
     public Cuenta(String numeroCuenta, double saldoInicial) {
         this.numeroCuenta = numeroCuenta;
         this.saldo = saldoInicial;
     }
 
-    public String getNumeroCuenta() {
-        return numeroCuenta;
+    public Cuenta() {
     }
 
-    public void setNumeroCuenta(String numeroCuenta) {
-        this.numeroCuenta = numeroCuenta;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getSaldo() {
@@ -43,16 +44,27 @@ public class Cuenta {
         this.saldo = saldo;
     }
 
-    public List<Transaccion> getTransacciones() {
-        return transacciones;
+    public String getNumeroCuenta() {
+        return numeroCuenta;
     }
 
-    public void setTransacciones(List<Transaccion> transacciones) {
-        this.transacciones = transacciones;
+    public void setNumeroCuenta(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
     }
+
+    public List<Transaccion> getListaTransacciones() {
+        return listaTransacciones;
+    }
+
+    public void setListaTransacciones(List<Transaccion> listaTransacciones) {
+        this.listaTransacciones = listaTransacciones;
+    }
+
+    public abstract double depositar(double monto, String tipoOperacion);
+    public abstract double retirar(double monto);
+    public abstract double comprar(double monto, boolean esCompraWeb);
 
     public void agregarTransaccion(Transaccion transaccion) {
-        transacciones.add(transaccion);
-        transaccion.setCuenta(this);
+        listaTransacciones.add(transaccion);
     }
 }
