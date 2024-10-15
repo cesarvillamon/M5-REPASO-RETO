@@ -1,5 +1,7 @@
 package com.bancolombia.aplicacionbancaria.controller;
 import com.bancolombia.aplicacionbancaria.service.CuentaService;
+import com.bancolombia.aplicacionbancaria.transaccion.TransaccionDTO;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,19 +26,17 @@ public class CuentaController {
         return new ResponseEntity<>("El saldo de la cuenta: " + numeroCuenta + " es: " + saldo, HttpStatus.OK);
     }
 
-    @PostMapping("/deposito")
-    public ResponseEntity<String> realizarDeposito(@RequestParam @NotNull String numeroCuenta,
-                                                   @RequestParam @NotNull @Min(1) double monto) {
-        cuentaService.depositar(numeroCuenta, monto);
+    @PostMapping("/transaccion/deposito")
+    public ResponseEntity<String> realizarDeposito(@RequestBody @Valid TransaccionDTO transaccionDTO) {
+        cuentaService.depositar(transaccionDTO.getNumeroCuenta(), transaccionDTO.getMonto());
         return new ResponseEntity<>("Depósito realizado con éxito", HttpStatus.OK);
     }
 
-    @PostMapping("/retiro")
-    public ResponseEntity<String> realizarRetiro(@RequestParam @NotNull String numeroCuenta,
-                                                 @RequestParam @NotNull @Min(1) double monto) {
-        cuentaService.retirar(numeroCuenta, monto);
+    @PostMapping("/transaccion/retiro")
+    public ResponseEntity<String> realizarRetiro(@RequestBody @Valid TransaccionDTO transaccionDTO) {
+        cuentaService.retirar(transaccionDTO.getNumeroCuenta(), transaccionDTO.getMonto());
         return new ResponseEntity<>("Retiro realizado con éxito", HttpStatus.OK);
     }
-
 }
+
 
