@@ -1,37 +1,19 @@
 package com.bancolombia.aplicacionbancaria.cliente;
 
-import com.bancolombia.aplicacionbancaria.prestamo.Prestamo;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+public class ClienteDTO {
 
-import java.util.List;
-
-@Entity
-public class Cliente {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nombre;
     private String email;
     private String telefono;
     private String direccion;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<Prestamo> prestamos;
-
-    public Cliente(Long id, String nombre, String email, String telefono, String direccion, List<Prestamo> prestamos) {
+    public ClienteDTO(Long id, String nombre, String email, String telefono, String direccion) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.prestamos = prestamos;
-    }
-
-    public Cliente() {
     }
 
     public Long getId() {
@@ -73,13 +55,4 @@ public class Cliente {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
-    public List<Prestamo> getPrestamos() {
-        return prestamos;
-    }
-
-    public void setPrestamos(List<Prestamo> prestamos) {
-        this.prestamos = prestamos;
-    }
 }
-
