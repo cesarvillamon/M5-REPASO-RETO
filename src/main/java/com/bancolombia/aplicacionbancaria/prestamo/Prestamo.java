@@ -1,12 +1,11 @@
 package com.bancolombia.aplicacionbancaria.prestamo;
 
 import com.bancolombia.aplicacionbancaria.cliente.Cliente;
+import com.bancolombia.aplicacionbancaria.historialPrestamo.HistorialPrestamo;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Prestamo {
@@ -24,24 +23,18 @@ public class Prestamo {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    private LocalDateTime fechaCreacion;
-    private LocalDateTime fechaActualizacion;
+    @OneToMany(mappedBy = "prestamo", cascade = CascadeType.ALL)
+    private List<HistorialPrestamo> historial;
 
-    public Prestamo(Long id, BigDecimal monto, BigDecimal interes, int duracionMeses, String estado, Cliente cliente, LocalDateTime fechaCreacion, LocalDateTime fechaActualizacion) {
+    public Prestamo(Long id, BigDecimal monto, BigDecimal interes, int duracionMeses, String estado) {
         this.id = id;
         this.monto = monto;
         this.interes = interes;
         this.duracionMeses = duracionMeses;
         this.estado = estado;
-        this.cliente = cliente;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaActualizacion = fechaActualizacion;
     }
 
     public Prestamo() {
-    }
-
-    public Prestamo(BigDecimal monto, BigDecimal interes, int duracionMeses, String pendiente, Cliente cliente, LocalDateTime now) {
     }
 
     public Long getId() {
@@ -92,20 +85,12 @@ public class Prestamo {
         this.cliente = cliente;
     }
 
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
+    public List<HistorialPrestamo> getHistorial() {
+        return historial;
     }
 
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public LocalDateTime getFechaActualizacion() {
-        return fechaActualizacion;
-    }
-
-    public void setFechaActualizacion(LocalDateTime fechaActualizacion) {
-        this.fechaActualizacion = fechaActualizacion;
+    public void setHistorial(List<HistorialPrestamo> historial) {
+        this.historial = historial;
     }
 }
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -19,7 +20,7 @@ public class PrestamoController {
     private PrestamoService prestamoService;
 
     @PostMapping
-    public ResponseEntity<Prestamo> crearPrestamo(@RequestBody PrestamoDTO prestamoDTO,
+    public ResponseEntity<PrestamoDTO> crearPrestamo(@RequestBody PrestamoDTO prestamoDTO,
                                                   @RequestParam Long clienteId) {
         Prestamo prestamo = new Prestamo();
         prestamo.setMonto(prestamoDTO.getMonto());
@@ -27,7 +28,8 @@ public class PrestamoController {
         prestamo.setDuracionMeses(prestamoDTO.getDuracionMeses());
 
         Prestamo prestamoCreado = prestamoService.crearPrestamo(prestamo, clienteId);
-        return ResponseEntity.ok(prestamoCreado);
+        PrestamoDTO prestamoDTO1 = new PrestamoDTO(prestamoCreado.getId(),prestamoCreado.getMonto(),prestamoCreado.getInteres(),prestamoCreado.getDuracionMeses(),prestamoCreado.getEstado());
+        return ResponseEntity.ok(prestamoDTO1);
     }
 
     @PutMapping("/{id}")
@@ -37,11 +39,23 @@ public class PrestamoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Prestamo> obtenerPrestamoPorId(@PathVariable Long id) {
-        return prestamoService.obtenerPrestamoPorId(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<PrestamoDTO> obtenerPrestamoPorId(@PathVariable Long id) {
+        Optional<Prestamo> prestamo = prestamoService.obtenerPrestamoPorId(id);
+        PrestamoDTO prestamoDTO = new PrestamoDTO(prestamo.get().getId(),prestamo.get().getMonto(),prestamo.get().getInteres(),prestamo.get().getDuracionMeses(),prestamo.get().getEstado());
+        return ResponseEntity.ok(prestamoDTO);
     }
+
+    @PostMapping("/simularcuotas/{id}")
+    public ResponseEntity<BigDecimal> simularCuotas(@PathVariable Long id) {
+        Optional<Prestamo> prestamo = prestamoService.obtenerPrestamoPorId(id);
+        if(prestamo.isPresent()){
+            BigDecimal cuota = (prestamo.get().getMonto().multiply(prestamo.get().getInteres())).divide(BigDecimal.valueOf(100)).divide(BigDecimal.valueOf(prestamo.get().getDuracionMeses()));
+            return ResponseEntity.ok(cuota);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
 
 

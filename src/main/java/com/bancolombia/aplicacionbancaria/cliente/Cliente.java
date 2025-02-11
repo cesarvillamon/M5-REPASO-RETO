@@ -1,9 +1,8 @@
 package com.bancolombia.aplicacionbancaria.cliente;
 
 import com.bancolombia.aplicacionbancaria.prestamo.Prestamo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 
@@ -22,13 +21,13 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Prestamo> prestamos;
 
-    public Cliente(Long id, String nombre, String email, String telefono, String direccion, List<Prestamo> prestamos) {
+
+    public Cliente(Long id, String nombre, String email, String telefono, String direccion) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.prestamos = prestamos;
     }
 
     public Cliente() {
@@ -81,5 +80,6 @@ public class Cliente {
     public void setPrestamos(List<Prestamo> prestamos) {
         this.prestamos = prestamos;
     }
+
 }
 

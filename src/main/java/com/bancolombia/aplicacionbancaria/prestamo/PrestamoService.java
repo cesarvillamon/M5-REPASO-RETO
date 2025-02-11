@@ -21,7 +21,6 @@ public class PrestamoService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    // Solicitar un préstamo
     public Prestamo crearPrestamo(Prestamo prestamo, Long clienteId) {
         Optional<Cliente> clienteOpt = clienteRepository.findById(clienteId);
         if (clienteOpt.isPresent()) {
@@ -30,21 +29,19 @@ public class PrestamoService {
             prestamo.setEstado("Pendiente");
             return prestamoRepository.save(prestamo);
         }
-        return null;  // Si no se encuentra el cliente
+        return null;
     }
 
-    // Aprobar o rechazar préstamo
     public Prestamo aprobarRechazarPrestamo(Long prestamoId, String estado) {
         Optional<Prestamo> prestamoOpt = prestamoRepository.findById(prestamoId);
         if (prestamoOpt.isPresent()) {
             Prestamo prestamo = prestamoOpt.get();
-            prestamo.setEstado(estado);  // Estado: Aprobado, Rechazado
+            prestamo.setEstado(estado);
             return prestamoRepository.save(prestamo);
         }
         return null;
     }
 
-    // Consultar préstamo
     public Optional<Prestamo> obtenerPrestamoPorId(Long id) {
         return prestamoRepository.findById(id);
     }
