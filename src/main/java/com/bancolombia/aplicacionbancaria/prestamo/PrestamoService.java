@@ -45,6 +45,14 @@ public class PrestamoService {
     public Optional<Prestamo> obtenerPrestamoPorId(Long id) {
         return prestamoRepository.findById(id);
     }
+
+    public List<Prestamo> obtenerPrestamoPorCliente(Long id) {
+        return prestamoRepository.findByClienteId(id);
+    }
+
+    public List<Prestamo> obtenerUltimosPrestamosPorCliente(Long id) {
+        return prestamoRepository.findTop3ByClienteIdOrderByIdDesc(id);
+    }
 }
 
 

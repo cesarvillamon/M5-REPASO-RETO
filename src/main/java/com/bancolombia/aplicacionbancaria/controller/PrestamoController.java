@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -54,6 +55,36 @@ public class PrestamoController {
         }else{
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/prestamoporcliente/{id}")
+    public ResponseEntity<List<PrestamoDTO>> obtenerPrestamoPorCliente(@PathVariable Long id) {
+        List<Prestamo> prestamos = prestamoService.obtenerPrestamoPorCliente(id);
+        List<PrestamoDTO> prestamoDTOs = prestamos.stream()
+                .map(prestamo -> new PrestamoDTO(
+                        prestamo.getId(),
+                        prestamo.getMonto(),
+                        prestamo.getInteres(),
+                        prestamo.getDuracionMeses(),
+                        prestamo.getEstado()
+                ))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(prestamoDTOs);
+    }
+
+    @GetMapping("/ultimosprestamoporcliente/{id}")
+    public ResponseEntity<List<PrestamoDTO>> obtenerUltimosPrestamosPorCliente(@PathVariable Long id) {
+        List<Prestamo> prestamos = prestamoService.obtenerUltimosPrestamosPorCliente(id);
+        List<PrestamoDTO> prestamoDTOs = prestamos.stream()
+                .map(prestamo -> new PrestamoDTO(
+                        prestamo.getId(),
+                        prestamo.getMonto(),
+                        prestamo.getInteres(),
+                        prestamo.getDuracionMeses(),
+                        prestamo.getEstado()
+                ))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(prestamoDTOs);
     }
 
 }

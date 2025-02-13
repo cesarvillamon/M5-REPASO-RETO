@@ -4,24 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="083d2606-802d-4303-87cf-04411faabde2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/historialPrestamo/HistorialPrestamo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/historialPrestamo/HistorialPrestamoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/historialPrestamo/HistorialPrestamoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/historialPrestamo/HistorialPrestamoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/sha1-checksums.bin" afterDir="false" />
+    <list default="true" id="083d2606-802d-4303-87cf-04411faabde2" name="Changes" comment="Se continua con implementacion de logica">
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/cliente/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/cliente/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/controller/PrestamoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/controller/PrestamoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/prestamo/Prestamo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/prestamo/Prestamo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/prestamo/PrestamoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/prestamo/PrestamoRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/prestamo/PrestamoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/prestamo/PrestamoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,12 +47,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;cesarvillamon&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/cesarvillamon/M5-REPASO-RETO.git&quot;,
+    &quot;accountId&quot;: &quot;87ad9840-1537-4d91-b87b-180611f698bb&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/prestamo/PrestamoService.java" root0="SKIP_INSPECTION" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2sfht20qgEqighjkh93SJnE6AWc" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -69,7 +72,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.AplicacionbancariaApplication.executor": "Debug",
+    "Application.AplicacionbancariaApplication.executor": "Run",
     "Gradle.Build M5-REPASO-RETO.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
     "Gradle.M5-REPASO-RETO [:com.bancolombia.aplicacionbancaria.AplicacionbancariaApplication.main()].executor": "Run",
@@ -131,6 +134,15 @@
       <option name="presentableId" value="Default" />
       <updated>1738852748354</updated>
     </task>
+    <task id="LOCAL-00001" summary="Se continua con implementacion de logica">
+      <option name="closed" value="true" />
+      <created>1739290515585</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1739290515585</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -144,12 +156,16 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Se continua con implementacion de logica" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se continua con implementacion de logica" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/bancolombia/aplicacionbancaria/controller/PrestamoController.java</url>
-          <line>24</line>
+          <line>25</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

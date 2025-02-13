@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface PrestamoRepository extends JpaRepository<Prestamo, Long> {
     List<Prestamo> findByClienteId(Long clienteId);
+
+    List<Prestamo> findTop3ByClienteIdOrderByIdDesc(Long clienteId);
 }
 
